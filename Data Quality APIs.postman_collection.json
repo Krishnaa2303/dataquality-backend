@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "5169f2ed-561a-4f3d-9440-fb6dd1a592d2",
+		"name": "Data Quality APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40580668"
+	},
+	"item": [
+		{
+			"name": "fetch_databases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/databases",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"databases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_schemas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/schemas?db_name=routeOptimization",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"schemas"
+					],
+					"query": [
+						{
+							"key": "db_name",
+							"value": "routeOptimization"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_tables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/tables?db_name=routeOptimization&schema=dbo",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"tables"
+					],
+					"query": [
+						{
+							"key": "db_name",
+							"value": "routeOptimization"
+						},
+						{
+							"key": "schema",
+							"value": "dbo"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/data?db_name=routeOptimization&schema=dbo&table=vehicles",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"data"
+					],
+					"query": [
+						{
+							"key": "db_name",
+							"value": "routeOptimization"
+						},
+						{
+							"key": "schema",
+							"value": "dbo"
+						},
+						{
+							"key": "table",
+							"value": "vehicles"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dq_checks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"db_name\": \"routeOptimization\",\r\n  \"schema\": \"dbo\",\r\n  \"table\": \"vehicles\",\r\n  \"dq_checks_input\": \"where there is light duty trucks change the location to India\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/dq_checks",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"dq_checks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save_data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"db_name\": \"routeOptimization\",\r\n  \"schema\": \"dbo\",\r\n  \"table\": \"vehicles\",\r\n  \"new_table_name\": \"option1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/save?db_name=routeOptimization&schema=dbo&table=vehicles",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"save"
+					],
+					"query": [
+						{
+							"key": "db_name",
+							"value": "routeOptimization"
+						},
+						{
+							"key": "schema",
+							"value": "dbo"
+						},
+						{
+							"key": "table",
+							"value": "vehicles"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:5000",
+			"type": "string"
+		}
+	]
+}
